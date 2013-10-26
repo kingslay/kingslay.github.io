@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
+url: http://kingslay.github.io
+title: 王金辨的技术博客
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: 王金辨
 simple_search: http://google.com/search
 description:
 
@@ -69,8 +69,8 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
-twitter_tweet_button: true
+#twitter_user:
+#twitter_tweet_button: true
 
 # Google +1
 google_plus_one: false
