@@ -1,0 +1,116 @@
+---
+layout: post
+title: "XCODE 环境变量"
+date: 2013-10-26 22:51
+comments: true
+categories:
+---
+$(BUILT_PRODUCTS_DIR)
+build成功后的，最终产品路径－－可以在Build Settings参数的Per-configuration Build Products Path项里设置
+
+$(TARGET_NAME)
+目标工程名称
+
+$(SRCROOT)
+工程文件（比如Nuno.xcodeproj）的路径
+
+$(CURRENT_PROJECT_VERSION)
+
+ 	Variable                                  Example
+    PATH                                      "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    LANG                                      en_US.US-ASCII
+    IPHONEOS_DEPLOYMENT_TARGET                4.1
+    ACTION                                    build
+    AD_HOC_CODE_SIGNING_ALLOWED               NO
+    ALTERNATE_GROUP                           staff
+    ALTERNATE_MODE                            u+w,go-w,a+rX
+    ALTERNATE_OWNER                           username
+    ALWAYS_SEARCH_USER_PATHS                  YES
+    APPLE_INTERNAL_DEVELOPER_DIR              /AppleInternal/Developer
+    APPLE_INTERNAL_DIR                        /AppleInternal
+    APPLE_INTERNAL_DOCUMENTATION_DIR          /AppleInternal/Documentation
+    APPLE_INTERNAL_LIBRARY_DIR                /AppleInternal/Library
+    APPLE_INTERNAL_TOOLS                      /AppleInternal/Developer/Tools
+    APPLY_RULES_IN_COPY_FILES                 NO
+    ARCHS                                     "armv6 armv7"
+    ARCHS_STANDARD_32_64_BIT                  "armv6 armv7"
+    ARCHS_STANDARD_32_BIT                     "armv6 armv7"
+    ARCHS_UNIVERSAL_IPHONE_OS                 armv7
+    AVAILABLE_PLATFORMS                       "iphonesimulator macosx iphoneos"
+    BUILD_COMPONENTS                          "headers build"
+    BUILD_DIR                                 "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath"
+    BUILD_ROOT                                "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath"
+    BUILD_STYLE
+    BUILD_VARIANTS                             normal
+    BUILT_PRODUCTS_DIR                         "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos"
+    CACHE_ROOT                                 /var/folders/2x/rvb2r9s16mq6r318zxvn0lk80000gn/C/com.apple.Xcode.501
+    CCHROOT                                    /var/folders/2x/rvb2r9s16mq6r318zxvn0lk80000gn/C/com.apple.Xcode.501
+    CHMOD                                      /bin/chmod
+    CHOWN                                      /usr/sbin/chown
+    CLASS_FILE_DIR                             "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/JavaClasses"
+    CLEAN_PRECOMPS                             YES
+    CLONE_HEADERS                              NO
+    CODESIGNING_FOLDER_PATH                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/InstallationBuildProductsLocation/Applications/project.app"
+    CODE_SIGNING_ALLOWED                       YES
+    CODE_SIGNING_REQUIRED                      YES
+    CODE_SIGN_CONTEXT_CLASS                    XCiPhoneOSCodeSignContext
+    CODE_SIGN_IDENTITY                         "iPhone Distribution"
+    COMBINE_HIDPI_IMAGES                       NO
+    COMPOSITE_SDK_DIRS                         /var/folders/2x/rvb2r9s16mq6r318zxvn0lk80000gn/C/com.apple.Xcode.501/CompositeSDKs
+    COMPRESS_PNG_FILES                         YES
+    CONFIGURATION                              Distribution
+    CONFIGURATION_BUILD_DIR                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos"
+    CONFIGURATION_TEMP_DIR                     "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos"
+    CONTENTS_FOLDER_PATH                       project.app/Contents
+    COPYING_PRESERVES_HFS_DATA                 NO
+    COPY_PHASE_STRIP                           YES
+    COPY_RESOURCES_FROM_STATIC_FRAMEWORKS      YES
+    CP                                         /bin/cp
+    CURRENT_ARCH                               armv7
+    CURRENT_VARIANT                            normal
+    DEAD_CODE_STRIPPING                        YES
+    DEBUGGING_SYMBOLS                          YES
+    DEBUG_INFORMATION_FORMAT                   dwarf-with-dsym
+    DEPLOYMENT_LOCATION                        YES
+    DEPLOYMENT_POSTPROCESSING                  YES
+    DERIVED_FILES_DIR                          "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources"
+    DERIVED_FILE_DIR                           "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources"
+    DERIVED_SOURCES_DIR                        "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources"
+    DEVELOPER_APPLICATIONS_DIR                 /Developer/Applications
+    DEVELOPER_BIN_DIR                          /Developer/usr/bin
+    DEVELOPER_DIR                              /Developer
+    DEVELOPER_FRAMEWORKS_DIR                   /Developer/Library/Frameworks
+    DEVELOPER_FRAMEWORKS_DIR_QUOTED            "\"/Developer/Library/Frameworks\""
+    DEVELOPER_LIBRARY_DIR                      /Developer/Library
+    DEVELOPER_SDK_DIR                          /Developer/SDKs
+    DEVELOPER_TOOLS_DIR                        /Developer/Tools
+    DEVELOPER_USR_DIR                          /Developer/usr
+    DEVELOPMENT_LANGUAGE                       English
+    DOCUMENTATION_FOLDER_PATH                  project.app/English.lproj/Documentation
+    DO_HEADER_SCANNING_IN_JAM                  NO
+    DSTROOT                                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/InstallationBuildProductsLocation"
+    DWARF_DSYM_FILE_NAME                       project.app.dSYM
+    DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT   NO
+    DWARF_DSYM_FOLDER_PATH                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos"
+    EFFECTIVE_PLATFORM_NAME                    -iphoneos
+    EMBEDDED_PROFILE_NAME                      embedded.mobileprovision
+    ENABLE_HEADER_DEPENDENCIES                 YES
+    ENABLE_OPENMP_SUPPORT                      NO
+    ENTITLEMENTS_ALLOWED                       YES
+    ENTITLEMENTS_REQUIRED                      YES
+    EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS  ".svn CVS"
+    EXECUTABLES_FOLDER_PATH                    project.app/Executables
+    EXECUTABLE_FOLDER_PATH                     project.app
+    EXECUTABLE_NAME                            project
+    EXECUTABLE_PATH                            project.app/project
+    FILE_LIST                                  "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/Objects/LinkFileList"
+    FIXED_FILES_DIR                            "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/FixedFiles"
+    FRAMEWORKS_FOLDER_PATH                     project.app/Frameworks
+    FRAMEWORK_FLAG_PREFIX                      -framework
+    FRAMEWORK_SEARCH_PATHS                     "\"/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos\" "
+    FRAMEWORK_VERSION                          A
+    FULL_PRODUCT_NAME                          project.app
+    GCC3_VERSION                               3.3
+    GCC_C_LANGUAGE_STANDARD                    gnu99
+    GCC_INLINES_ARE_PRIVATE_EXTERN             YES
+    GCC_PFE_FILE_C_DIAL
