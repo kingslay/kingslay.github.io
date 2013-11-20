@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>王金辨的技术博客</title>
+  <title>XCODE 环境变量 - 王金辨的技术博客</title>
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="1、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法: &ndash;(void)touchesBegan:(NSSet )touches withEvent:(UIEvent )event
-{ [self. &hellip;">
+  <meta name="description" content="$(BUILT_PRODUCTS_DIR)
+build成功后的，最终产品路径－－可以在Build Settings参数的Per-configuration Build Products Path项里设置 $(TARGET_NAME)
+目标工程名称 $(SRCROOT)
+工程文件（比如Nuno. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kingslay.github.io">
+  <link rel="canonical" href="http://kingslay.github.io/blog/2013/10/26/xcode-huan-jing-bian-liang">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="王金辨的技术博客" type="application/atom+xml">
@@ -64,59 +66,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/11/20/iosdai-ma-cookie/">IOS代码cookie</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-20T23:30:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法:</p>
-
-<p>&ndash;(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event
-{</p>
-
-<pre><code>[self.view endEditing:YES];
-</code></pre>
-
-<p>}</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/26/xcode-huan-jing-bian-liang/">XCODE 环境变量</a></h1>
+      <h1 class="entry-title">XCODE 环境变量</h1>
     
     
       <p class="meta">
@@ -139,7 +94,7 @@
   </header>
 
 
-  <div class="entry-content"><p>$(BUILT_PRODUCTS_DIR)
+<div class="entry-content"><p>$(BUILT_PRODUCTS_DIR)
 build成功后的，最终产品路径－－可以在Build Settings参数的Per-configuration Build Products Path项里设置</p>
 
 <p>$(TARGET_NAME)
@@ -250,18 +205,51 @@ GCC_INLINES_ARE_PRIVATE_EXTERN             YES
 GCC_PFE_FILE_C_DIAL
 </code></pre>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">王金辨</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2013-10-26T22:51:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
   
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/11/20/iosdai-ma-cookie/" title="Next Post: IOS代码cookie">IOS代码cookie &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -285,6 +273,7 @@ GCC_PFE_FILE_C_DIAL
 
   
 </aside>
+
 
     </div>
   </div>
