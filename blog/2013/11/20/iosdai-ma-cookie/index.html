@@ -9,8 +9,8 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="1、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法: &ndash;(void)touchesBegan:(NSSet )touches withEvent:(UIEvent )event
-{ [self. &hellip;">
+  <meta name="description" content="1、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法: -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{ [self.view &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,13 +94,11 @@
 
 <div class="entry-content"><p>1、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法:</p>
 
-<p>&ndash;(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event
-{</p>
-
-<pre><code>[self.view endEditing:YES];
+<pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 </code></pre>
-
-<p>}</p>
 </div>
 
 
