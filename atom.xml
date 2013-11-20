@@ -4,7 +4,7 @@
   <title><![CDATA[王金辨的技术博客]]></title>
   <link href="http://kingslay.github.io/atom.xml" rel="self"/>
   <link href="http://kingslay.github.io/"/>
-  <updated>2013-11-21T01:48:10+08:00</updated>
+  <updated>2013-11-21T02:00:23+08:00</updated>
   <id>http://kingslay.github.io/</id>
   <author>
     <name><![CDATA[王金辨]]></name>
@@ -18,7 +18,7 @@
     <link href="http://kingslay.github.io/blog/2013/11/20/iosdai-ma-cookie/"/>
     <updated>2013-11-20T23:30:00+08:00</updated>
     <id>http://kingslay.github.io/blog/2013/11/20/iosdai-ma-cookie</id>
-    <content type="html"><![CDATA[<p>1、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法:</p>
+    <content type="html"><![CDATA[<p>一、想点击UIViewController的任意地方，就可以dismiss keyboard,最简单的办法就是在VC中override以下方法:</p>
 
 <pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
