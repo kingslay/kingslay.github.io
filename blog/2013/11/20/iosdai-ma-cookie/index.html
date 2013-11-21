@@ -9,8 +9,7 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 1、在VC中override以下方法: -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{ [self.view &hellip;">
+  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法: &ndash;(void)touchesBegan:(NSSet )touches withEvent:(UIEvent )event { [self. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,23 +93,26 @@
 
 <div class="entry-content"><p>一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法</p>
 
-<p>1、在VC中override以下方法:</p>
+<ol>
+<li><p>在VC中override以下方法:</p>
 
-<pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
-</code></pre>
+<p> &ndash;(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event
+ {
+     [self.view endEditing:YES];
+ }</p></li>
+<li><p><del>用于在拿view比较困难的时候</del> <em>我在IOS7里，试了不行。留等后续更新</em></p>
 
-<p>2、用于在拿view比较困难的时候用</p>
+<p> [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];</p>
 
-<pre><code>[[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
-</code></pre>
+<p> 或</p>
 
-<p>或</p>
+<p> [[[UIApplication sharedApplication] keyWindow] endEditing:YES]</p></li>
+</ol>
 
-<pre><code>[[[UIApplication sharedApplication] keyWindow] endEditing:YES]
-</code></pre>
+
+<p>二、手动注册视图类</p>
+
+<p>调用registerClass:或者registerNib:</p>
 </div>
 
 
