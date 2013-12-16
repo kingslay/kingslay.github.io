@@ -4,7 +4,7 @@
   <title><![CDATA[王金辨的技术博客]]></title>
   <link href="http://kingslay.github.io/atom.xml" rel="self"/>
   <link href="http://kingslay.github.io/"/>
-  <updated>2013-12-16T11:28:22+08:00</updated>
+  <updated>2013-12-16T11:32:31+08:00</updated>
   <id>http://kingslay.github.io/</id>
   <author>
     <name><![CDATA[王金辨]]></name>
@@ -23,18 +23,27 @@
 <ol>
 <li><p>在VC中override以下方法:</p>
 
-<p> &ndash;(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event
+<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
  {
      [self.view endEditing:YES];
- }</p>
+ }   
+</code></pre>
 
 <p> 如果获取view比较困难的时候，可以换成调用</p>
 
-<p> [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];</p>
+<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+ {
+     [[UIApplication sharedApplication]          sendAction:@selector(resignFirstResponder) to:nil       from:nil forEvent:nil]; 
+ }
+</code></pre>
 
 <p> 或</p>
 
-<p> [[[UIApplication sharedApplication] keyWindow] endEditing:YES]</p></li>
+<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+ {
+     [[[UIApplication sharedApplication] keyWindow]  endEditing:YES]
+ }
+</code></pre></li>
 </ol>
 
 

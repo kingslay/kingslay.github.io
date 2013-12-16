@@ -9,7 +9,7 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法: &ndash;(void)touchesBegan:(NSSet )touches withEvent:(UIEvent )event { [self. &hellip;">
+  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法: -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { [self.view &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,18 +99,27 @@
 <ol>
 <li><p>在VC中override以下方法:</p>
 
-<p> &ndash;(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event
+<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
  {
      [self.view endEditing:YES];
- }</p>
+ }   
+</code></pre>
 
 <p> 如果获取view比较困难的时候，可以换成调用</p>
 
-<p> [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];</p>
+<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+ {
+     [[UIApplication sharedApplication]          sendAction:@selector(resignFirstResponder) to:nil       from:nil forEvent:nil]; 
+ }
+</code></pre>
 
 <p> 或</p>
 
-<p> [[[UIApplication sharedApplication] keyWindow] endEditing:YES]</p></li>
+<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+ {
+     [[[UIApplication sharedApplication] keyWindow]  endEditing:YES]
+ }
+</code></pre></li>
 </ol>
 
 
