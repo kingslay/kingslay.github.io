@@ -4,7 +4,7 @@
   <title><![CDATA[王金辨的技术博客]]></title>
   <link href="http://kingslay.github.io/atom.xml" rel="self"/>
   <link href="http://kingslay.github.io/"/>
-  <updated>2013-12-16T11:34:25+08:00</updated>
+  <updated>2013-12-16T12:00:07+08:00</updated>
   <id>http://kingslay.github.io/</id>
   <author>
     <name><![CDATA[王金辨]]></name>
@@ -33,7 +33,7 @@
 
 <pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
  {
-     [[UIApplication sharedApplication]          sendAction:@selector(resignFirstResponder) to:nil       from:nil forEvent:nil]; 
+     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
  }
 </code></pre>
 
@@ -41,7 +41,7 @@
 
 <pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
  {
-     [[[UIApplication sharedApplication] keyWindow]  endEditing:YES]
+     [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
  }
 </code></pre></li>
 </ol>
