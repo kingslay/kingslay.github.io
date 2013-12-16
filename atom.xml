@@ -4,7 +4,7 @@
   <title><![CDATA[王金辨的技术博客]]></title>
   <link href="http://kingslay.github.io/atom.xml" rel="self"/>
   <link href="http://kingslay.github.io/"/>
-  <updated>2013-11-21T15:35:17+08:00</updated>
+  <updated>2013-12-16T11:28:22+08:00</updated>
   <id>http://kingslay.github.io/</id>
   <author>
     <name><![CDATA[王金辨]]></name>
@@ -26,8 +26,9 @@
 <p> &ndash;(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event
  {
      [self.view endEditing:YES];
- }</p></li>
-<li><p><del>用于在拿view比较困难的时候</del> <em>我在IOS7里，试了不行。留等后续更新</em></p>
+ }</p>
+
+<p> 如果获取view比较困难的时候，可以换成调用</p>
 
 <p> [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];</p>
 
