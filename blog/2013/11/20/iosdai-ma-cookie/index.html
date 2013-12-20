@@ -122,7 +122,22 @@
 
 <p>二、手动注册视图类</p>
 
-<p>调用registerClass:或者registerNib:</p>
+<p>UITableView有这个方法</p>
+
+<pre><code>- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
+- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
+</code></pre>
+
+<p>三、iOS中的json转化</p>
+
+<pre><code> //Foundation对象转换为json数据
+ NSData *jsonData = [NSJSONSerializationdataWithJSONObject:dictoptions:NSJSONWritingPrettyPrinted error:NULL];
+ NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+ NSLog(@"json data:%@",json);
+
+  //NSData转换为NSDictionary
+NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:NULL];
+</code></pre>
 </div>
 
 
