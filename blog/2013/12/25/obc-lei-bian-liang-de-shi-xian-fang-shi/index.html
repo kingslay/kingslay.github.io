@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>IOS代码cookie - 王金辨的技术博客</title>
+  <title>Obc 类变量的实现方式 - 王金辨的技术博客</title>
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法: -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { [self.view &hellip;">
+  <meta name="description" content="obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。) static &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kingslay.github.io/blog/2013/11/20/iosdai-ma-cookie">
+  <link rel="canonical" href="http://kingslay.github.io/blog/2013/12/25/obc-lei-bian-liang-de-shi-xian-fang-shi">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="王金辨的技术博客" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">IOS代码cookie</h1>
+      <h1 class="entry-title">Obc 类变量的实现方式</h1>
     
     
       <p class="meta">
@@ -84,59 +84,21 @@
   
 
 
-<time datetime="2013-11-20T23:30:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
+<time datetime="2013-12-25T16:57:59+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法</p>
+<div class="entry-content"><p>obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。)</p>
 
-<ol>
-<li><p>在VC中override以下方法:</p>
+<pre><code>static LoginDelegate *loginDelegate;
 
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [self.view endEditing:YES];
- }   
-</code></pre>
-
-<p> 如果获取view比较困难的时候，可以换成调用</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
- }
-</code></pre>
-
-<p> 或</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
- }
-</code></pre></li>
-</ol>
-
-
-<p>二、手动注册视图类</p>
-
-<p>UITableView有这个方法</p>
-
-<pre><code>- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
-- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
-</code></pre>
-
-<p>三、iOS中的json转化</p>
-
-<pre><code> //Foundation对象转换为json数据
- NSData *jsonData = [NSJSONSerializationdataWithJSONObject:dictoptions:NSJSONWritingPrettyPrinted error:NULL];
- NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
- NSLog(@"json data:%@",json);
-
-  //NSData转换为NSDictionary
-NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:NULL];
++(void)initialize
+{
+  loginDelegate = [[LoginDelegate alloc] init];
+}
 </code></pre>
 </div>
 
@@ -160,7 +122,7 @@ NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NS
   
 
 
-<time datetime="2013-11-20T23:30:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
+<time datetime="2013-12-25T16:57:59+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2013</time>
       
 
 
@@ -175,10 +137,8 @@ NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NS
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/10/26/xcode-huan-jing-bian-liang/" title="Previous Post: XCODE 环境变量">&laquo; XCODE 环境变量</a>
+        <a class="basic-alignment left" href="/blog/2013/11/20/iosdai-ma-cookie/" title="Previous Post: IOS代码cookie">&laquo; IOS代码cookie</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/12/25/obc-lei-bian-liang-de-shi-xian-fang-shi/" title="Next Post: obc 类变量的实现方式">obc 类变量的实现方式 &raquo;</a>
       
     </p>
   </footer>

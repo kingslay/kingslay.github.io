@@ -9,7 +9,7 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法: -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { [self.view &hellip;">
+  <meta name="description" content="obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。) static &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/25/obc-lei-bian-liang-de-shi-xian-fang-shi/">Obc 类变量的实现方式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-25T16:57:59+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。)</p>
+
+<pre><code>static LoginDelegate *loginDelegate;
+
++(void)initialize
+{
+  loginDelegate = [[LoginDelegate alloc] init];
+}
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -304,6 +348,10 @@ GCC_PFE_FILE_C_DIAL
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/25/obc-lei-bian-liang-de-shi-xian-fang-shi/">Obc 类变量的实现方式</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/11/20/iosdai-ma-cookie/">IOS代码cookie</a>
