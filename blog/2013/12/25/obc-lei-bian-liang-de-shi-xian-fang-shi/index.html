@@ -174,12 +174,25 @@
   
 </aside>
 
-｛% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %｝
+
   <section>
     <h1>Comments</h1>
-    <div id="comments" aria-live="polite">｛% include post/duoshuo.html %｝</div>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"王金辨"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
   </section>
-｛% endif %｝
+
 
     </div>
   </div>
