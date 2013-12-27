@@ -9,7 +9,7 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。) static &hellip;">
+  <meta name="description" content="有的时候你要对一个对象增加数据，或是方法时。你可以进行子类化。但如果想这个数据，方法在所有的子类里都起作用的话，但是你又没有这个基类的源代码。或者是为了二进制兼容的原因你无法修改这个对象的时候。那这时可以用基类进行扩展。 objective-c有两个扩展机制：category、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,48 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/27/objective-cde-kuo-zhan-ji-zhi/">Objective-c的扩展机制</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-27T17:40:55+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有的时候你要对一个对象增加数据，或是方法时。你可以进行子类化。但如果想这个数据，方法在所有的子类里都起作用的话，但是你又没有这个基类的源代码。或者是为了二进制兼容的原因你无法修改这个对象的时候。那这时可以用基类进行扩展。</p>
+
+<p>objective-c有两个扩展机制：category、associative。</p>
+
+<p>1、category，可以通过它对原有的类扩展方法，但不能增加变量。</p>
+
+<p>2、associative，可以通过它来扩展属性。要用它必须使用&lt;objc/runtime.h>的头文件，然后就可以自由使用objc_getAssociatedObject、objc_setAssociatedObject、objc_removeAssociatedObjects。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -348,6 +390,10 @@ GCC_PFE_FILE_C_DIAL
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/27/objective-cde-kuo-zhan-ji-zhi/">Objective-c的扩展机制</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/12/25/obc-lei-bian-liang-de-shi-xian-fang-shi/">Obc 类变量的实现方式</a>

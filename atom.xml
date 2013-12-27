@@ -4,7 +4,7 @@
   <title><![CDATA[王金辨的技术博客]]></title>
   <link href="http://kingslay.github.io/atom.xml" rel="self"/>
   <link href="http://kingslay.github.io/"/>
-  <updated>2013-12-25T18:29:13+08:00</updated>
+  <updated>2013-12-27T17:53:41+08:00</updated>
   <id>http://kingslay.github.io/</id>
   <author>
     <name><![CDATA[王金辨]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-c的扩展机制]]></title>
+    <link href="http://kingslay.github.io/blog/2013/12/27/objective-cde-kuo-zhan-ji-zhi/"/>
+    <updated>2013-12-27T17:40:55+08:00</updated>
+    <id>http://kingslay.github.io/blog/2013/12/27/objective-cde-kuo-zhan-ji-zhi</id>
+    <content type="html"><![CDATA[<p>有的时候你要对一个对象增加数据，或是方法时。你可以进行子类化。但如果想这个数据，方法在所有的子类里都起作用的话，但是你又没有这个基类的源代码。或者是为了二进制兼容的原因你无法修改这个对象的时候。那这时可以用基类进行扩展。</p>
+
+<p>objective-c有两个扩展机制：category、associative。</p>
+
+<p>1、category，可以通过它对原有的类扩展方法，但不能增加变量。</p>
+
+<p>2、associative，可以通过它来扩展属性。要用它必须使用&lt;objc/runtime.h>的头文件，然后就可以自由使用objc_getAssociatedObject、objc_setAssociatedObject、objc_removeAssociatedObjects。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Obc 类变量的实现方式]]></title>
