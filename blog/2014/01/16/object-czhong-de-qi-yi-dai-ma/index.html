@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Objective-c的扩展机制 - 王金辨的技术博客</title>
+  <title>Object-c中的奇异代码 - 王金辨的技术博客</title>
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="有的时候你要对一个对象增加数据，或是方法时。你可以进行子类化。但如果想这个数据，方法在所有的子类里都起作用的话，但是你又没有这个基类的源代码。或者是为了二进制兼容的原因你无法修改这个对象的时候。那这时可以用基类进行扩展。 objective-c有两个扩展机制：category、 &hellip;">
+  <meta name="description" content="一、struct的用法 正常CGRect的创建方式是 CGRect rect1 = CGRectMake(0, 0, 12, 22); CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了 struct CGRect rect2;
+rect2. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kingslay.github.io/blog/2013/12/27/objective-cde-kuo-zhan-ji-zhi">
+  <link rel="canonical" href="http://kingslay.github.io/blog/2014/01/16/object-czhong-de-qi-yi-dai-ma">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="王金辨的技术博客" type="application/atom+xml">
@@ -68,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Objective-c的扩展机制</h1>
+      <h1 class="entry-title">Object-c中的奇异代码</h1>
     
     
       <p class="meta">
@@ -84,20 +85,59 @@
   
 
 
-<time datetime="2013-12-27T17:40:55+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2013</time>
+<time datetime="2014-01-16T10:26:25+08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>有的时候你要对一个对象增加数据，或是方法时。你可以进行子类化。但如果想这个数据，方法在所有的子类里都起作用的话，但是你又没有这个基类的源代码。或者是为了二进制兼容的原因你无法修改这个对象的时候。那这时可以用基类进行扩展。</p>
+<div class="entry-content"><p>一、struct的用法</p>
 
-<p>objective-c有两个扩展机制：category、associative。</p>
+<p>正常CGRect的创建方式是</p>
 
-<p>1、category，可以通过它对原有的类扩展方法，但不能增加变量。</p>
+<pre><code>CGRect rect1 = CGRectMake(0, 0, 12, 22);
+</code></pre>
 
-<p>2、associative，可以通过它来扩展属性。要用它必须使用&lt;objc/runtime.h>的头文件，然后就可以自由使用objc_getAssociatedObject、objc_setAssociatedObject、objc_removeAssociatedObjects。</p>
+<p>CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了</p>
+
+<pre><code>struct CGRect rect2;
+rect2.origin = CGPointZero;
+rect2.size.width = 12;
+rect2.size.height = 22;
+</code></pre>
+
+<p>这个是通用的struct的创建方法。但是这样还是比较麻烦的。 在网上有看到一种<a href="http://answerhuang.duapp.com/index.php/2013/10/17/objective-c_c99/">用法</a></p>
+
+<pre><code>CGRect rect3 = (CGRect){
+                    .size.width = 12,
+                    .size.height = 22,
+                    .origin.x = 0,
+                    .origin.y = 0
+};
+</code></pre>
+
+<p>这是C99初始化语法。这样代码更直观了。还有一种更简洁的方式，但是就没有那么直观了</p>
+
+<pre><code>CGRect rect4 = { .origin = CGPointZero, 12, 22 };
+CGRect rect5 = { 0, 0, 12, 22 };
+</code></pre>
+
+<p>二、statement expressions</p>
+
+<p>昨晚在网上看了一篇<a href="http://nshipster.com/new-years-2014/">文章</a>.里面提供了一种新奇的写法</p>
+
+<pre><code> CGRect rect6 = ({
+    struct CGRect rect2;
+    rect2.origin = CGPointZero;
+    rect2.size.width = 22;
+    rect2.size.height = 32;
+    rect2;
+}); 
+</code></pre>
+
+<p>This is a gcc extension called <a href="http://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html">statement expressions</a>,
+you can find the complete list of C extensions <a href="http://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions">here</a> .这种特性在Linux内核中常被用于宏的定义中</p>
 </div>
 
 
@@ -120,7 +160,7 @@
   
 
 
-<time datetime="2013-12-27T17:40:55+08:00" pubdate data-updated="true">Dec 27<span>th</span>, 2013</time>
+<time datetime="2014-01-16T10:26:25+08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2014</time>
       
 
 
@@ -135,10 +175,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/12/25/obc-lei-bian-liang-de-shi-xian-fang-shi/" title="Previous Post: obc 类变量的实现方式">&laquo; obc 类变量的实现方式</a>
+        <a class="basic-alignment left" href="/blog/2013/12/27/objective-cde-kuo-zhan-ji-zhi/" title="Previous Post: objective-c的扩展机制">&laquo; objective-c的扩展机制</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/01/16/object-czhong-de-qi-yi-dai-ma/" title="Next Post: Object-c中的奇异代码">Object-c中的奇异代码 &raquo;</a>
       
     </p>
   </footer>
