@@ -4,7 +4,7 @@
   <title><![CDATA[王金辨的技术博客]]></title>
   <link href="http://kingslay.github.io/atom.xml" rel="self"/>
   <link href="http://kingslay.github.io/"/>
-  <updated>2014-01-16T11:47:34+08:00</updated>
+  <updated>2014-01-17T14:55:42+08:00</updated>
   <id>http://kingslay.github.io/</id>
   <author>
     <name><![CDATA[王金辨]]></name>
@@ -155,6 +155,15 @@ PubUtil.loginDelegate
  {
      [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
  }
+</code></pre></li>
+<li><p>UIScrollViewKeyboardDismissMode</p>
+
+<p> IOS7苹果给UIScrollView添加了一个很好用的属性keyboardDismissMode，用于在滚动的时候隐藏键盘。
+现在仅仅只需要在Storyboard中改变一个简单的属性，或者增加一行代码，你的app可以和办到和Messages app一样的事情了。这个属性使用了新的UIScrollViewKeyboardDismissMode enum枚举类型。这个enum枚举类型可能的值如下：</p>
+
+<pre><code>   UIScrollViewKeyboardDismissModeNone        // the keyboard is not dismissed automatically when scrolling 
+   UIScrollViewKeyboardDismissModeOnDrag      // dismisses the keyboard when a drag begins 
+   UIScrollViewKeyboardDismissModeInteractive // the keyboard follows the dragging touch off screen, and may be pulled upward again to cancel the dismiss 
 </code></pre></li>
 </ol>
 
