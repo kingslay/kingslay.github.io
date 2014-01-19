@@ -9,7 +9,9 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法: -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { [self.view &hellip;">
+  <meta name="description" content="一、想点击UIViewController的任意地方，就可以dismiss keyboard有这几种方法 在VC中override以下方法:
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{ [self.view &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,59 +97,48 @@
 
 <ol>
 <li><p>在VC中override以下方法:</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [self.view endEditing:YES];
- }   
-</code></pre>
-
-<p> 如果获取view比较困难的时候，可以换成调用</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
- }
-</code></pre>
-
-<p> 或</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
- }
-</code></pre></li>
+<div class="highlight"><pre><code class="text">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}   
+</code></pre></div>
+<p>如果获取view比较困难的时候，可以换成调用</p>
+<div class="highlight"><pre><code class="text">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
+}
+</code></pre></div>
+<p>或</p>
+<div class="highlight"><pre><code class="text">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
+}
+</code></pre></div></li>
 <li><p>UIScrollViewKeyboardDismissMode</p>
 
-<p> IOS7苹果给UIScrollView添加了一个很好用的属性keyboardDismissMode，用于在滚动的时候隐藏键盘。
+<p>IOS7苹果给UIScrollView添加了一个很好用的属性keyboardDismissMode，用于在滚动的时候隐藏键盘。
 现在仅仅只需要在Storyboard中改变一个简单的属性，或者增加一行代码，你的app可以和办到和Messages app一样的事情了。这个属性使用了新的UIScrollViewKeyboardDismissMode enum枚举类型。这个enum枚举类型可能的值如下：</p>
-
-<pre><code>   UIScrollViewKeyboardDismissModeNone        // the keyboard is not dismissed automatically when scrolling 
-   UIScrollViewKeyboardDismissModeOnDrag      // dismisses the keyboard when a drag begins 
-   UIScrollViewKeyboardDismissModeInteractive // the keyboard follows the dragging touch off screen, and may be pulled upward again to cancel the dismiss 
-</code></pre></li>
+<div class="highlight"><pre><code class="text">UIScrollViewKeyboardDismissModeNone        // the keyboard is not dismissed automatically when scrolling 
+UIScrollViewKeyboardDismissModeOnDrag      // dismisses the keyboard when a drag begins 
+UIScrollViewKeyboardDismissModeInteractive // the keyboard follows the dragging touch off screen, and may be pulled upward again to cancel the dismiss 
+</code></pre></div></li>
 </ol>
-
 
 <p>二、手动注册视图类</p>
 
 <p>UITableView有这个方法</p>
-
-<pre><code>- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
+<div class="highlight"><pre><code class="text">- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
 - (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
-</code></pre>
-
+</code></pre></div>
 <p>三、iOS中的json转化</p>
-
-<pre><code> //Foundation对象转换为json数据
+<div class="highlight"><pre><code class="text"> //Foundation对象转换为json数据
  NSData *jsonData = [NSJSONSerializationdataWithJSONObject:dictoptions:NSJSONWritingPrettyPrinted error:NULL];
  NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
- NSLog(@"json data:%@",json);
+ NSLog(@&quot;json data:%@&quot;,json);
 
   //NSData转换为NSDictionary
 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:NULL];
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
   <footer>
@@ -192,25 +183,6 @@ NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NS
     </p>
   </footer>
 </article>
-
-
-  <section>
-    <h1>Comments</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"kingslay"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END --></div>
-  </section>
 
 </div>
 

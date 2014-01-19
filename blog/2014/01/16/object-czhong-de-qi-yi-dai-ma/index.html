@@ -9,7 +9,9 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、struct的用法 正常CGRect的创建方式是 CGRect rect1 = CGRectMake(0, 0, 12, 22); CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了 struct CGRect rect2;
+  <meta name="description" content="一、struct的用法 正常CGRect的创建方式是
+CGRect rect1 = CGRectMake(0, 0, 12, 22); CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了
+struct CGRect rect2;
 rect2. &hellip;">
   
 
@@ -95,47 +97,37 @@ rect2. &hellip;">
 <div class="entry-content"><p>一、struct的用法</p>
 
 <p>正常CGRect的创建方式是</p>
-
-<pre><code>CGRect rect1 = CGRectMake(0, 0, 12, 22);
-</code></pre>
-
+<div class="highlight"><pre><code class="text">CGRect rect1 = CGRectMake(0, 0, 12, 22);
+</code></pre></div>
 <p>CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了</p>
-
-<pre><code>struct CGRect rect2;
+<div class="highlight"><pre><code class="text">struct CGRect rect2;
 rect2.origin = CGPointZero;
 rect2.size.width = 12;
 rect2.size.height = 22;
-</code></pre>
-
+</code></pre></div>
 <p>这个是通用的struct的创建方法。但是这样还是比较麻烦的。 在网上有看到一种<a href="http://answerhuang.duapp.com/index.php/2013/10/17/objective-c_c99/">用法</a></p>
-
-<pre><code>CGRect rect3 = (CGRect){
+<div class="highlight"><pre><code class="text">CGRect rect3 = (CGRect){
                     .size.width = 12,
                     .size.height = 22,
                     .origin.x = 0,
                     .origin.y = 0
 };
-</code></pre>
-
+</code></pre></div>
 <p>这是C99初始化语法。这样代码更直观了。还有一种更简洁的方式，但是就没有那么直观了</p>
-
-<pre><code>CGRect rect4 = { .origin = CGPointZero, 12, 22 };
+<div class="highlight"><pre><code class="text">CGRect rect4 = { .origin = CGPointZero, 12, 22 };
 CGRect rect5 = { 0, 0, 12, 22 };
-</code></pre>
-
+</code></pre></div>
 <p>二、statement expressions</p>
 
 <p>昨晚在网上看了一篇<a href="http://nshipster.com/new-years-2014/">文章</a>.里面提供了一种新奇的写法</p>
-
-<pre><code> CGRect rect6 = ({
+<div class="highlight"><pre><code class="text"> CGRect rect6 = ({
     struct CGRect rect2;
     rect2.origin = CGPointZero;
     rect2.size.width = 22;
     rect2.size.height = 32;
     rect2;
 }); 
-</code></pre>
-
+</code></pre></div>
 <p>This is a gcc extension called <a href="http://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html">statement expressions</a>,
 you can find the complete list of C extensions <a href="http://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions">here</a> .这种特性在Linux内核中常被用于宏的定义中</p>
 </div>
@@ -181,25 +173,6 @@ you can find the complete list of C extensions <a href="http://gcc.gnu.org/onlin
     </p>
   </footer>
 </article>
-
-
-  <section>
-    <h1>Comments</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"kingslay"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END --></div>
-  </section>
 
 </div>
 

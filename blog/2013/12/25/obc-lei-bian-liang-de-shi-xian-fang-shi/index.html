@@ -9,7 +9,8 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。) @interface PubUtil &hellip;">
+  <meta name="description" content="obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。)
+@interface PubUtil &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,8 +93,7 @@
 
 
 <div class="entry-content"><p>obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。)</p>
-
-<pre><code>@interface PubUtil : NSObject
+<div class="highlight"><pre><code class="text">@interface PubUtil : NSObject
 + (void)loginDelegate;
 @end
 
@@ -109,22 +109,17 @@ static LoginDelegate *loginDelegate;
     }
 }
 @end
-</code></pre>
-
+</code></pre></div>
 <p>这样就可以在别的类调用这个类变量了。</p>
-
-<pre><code>[PubUtil loginDelegate]
+<div class="highlight"><pre><code class="text">[PubUtil loginDelegate]
 //或是，但是用下面这种方式，xcode不会帮你提示有这个变量的。
 PubUtil.loginDelegate
-</code></pre>
-
+</code></pre></div>
 <p>但是如果PubUtil有子类的话。那initialize就会调用两次。除非PubUtil的子类有实现了initialize方法，并且不能这样调用父类的initialize。如下</p>
-
-<pre><code>+(void)initialize{
+<div class="highlight"><pre><code class="text">+(void)initialize{
     [super initialize];
 }
-</code></pre>
-
+</code></pre></div>
 <p>所以为了解决这个问题。就像开头的写法if (self == [PubUtil class])，先判断下是不是当前类的类型。</p>
 </div>
 
@@ -171,25 +166,6 @@ PubUtil.loginDelegate
     </p>
   </footer>
 </article>
-
-
-  <section>
-    <h1>Comments</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"kingslay"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END --></div>
-  </section>
 
 </div>
 

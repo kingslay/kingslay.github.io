@@ -9,7 +9,9 @@
   <meta name="author" content="王金辨">
 
   
-  <meta name="description" content="一、struct的用法 正常CGRect的创建方式是 CGRect rect1 = CGRectMake(0, 0, 12, 22); CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了 struct CGRect rect2;
+  <meta name="description" content="一、struct的用法 正常CGRect的创建方式是
+CGRect rect1 = CGRectMake(0, 0, 12, 22); CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了
+struct CGRect rect2;
 rect2. &hellip;">
   
 
@@ -98,47 +100,37 @@ rect2. &hellip;">
   <div class="entry-content"><p>一、struct的用法</p>
 
 <p>正常CGRect的创建方式是</p>
-
-<pre><code>CGRect rect1 = CGRectMake(0, 0, 12, 22);
-</code></pre>
-
+<div class="highlight"><pre><code class="text">CGRect rect1 = CGRectMake(0, 0, 12, 22);
+</code></pre></div>
 <p>CGRectMake是CoreGraphics提供的方法。如果没有这个全局方法的话，那要用下面这种写法了</p>
-
-<pre><code>struct CGRect rect2;
+<div class="highlight"><pre><code class="text">struct CGRect rect2;
 rect2.origin = CGPointZero;
 rect2.size.width = 12;
 rect2.size.height = 22;
-</code></pre>
-
+</code></pre></div>
 <p>这个是通用的struct的创建方法。但是这样还是比较麻烦的。 在网上有看到一种<a href="http://answerhuang.duapp.com/index.php/2013/10/17/objective-c_c99/">用法</a></p>
-
-<pre><code>CGRect rect3 = (CGRect){
+<div class="highlight"><pre><code class="text">CGRect rect3 = (CGRect){
                     .size.width = 12,
                     .size.height = 22,
                     .origin.x = 0,
                     .origin.y = 0
 };
-</code></pre>
-
+</code></pre></div>
 <p>这是C99初始化语法。这样代码更直观了。还有一种更简洁的方式，但是就没有那么直观了</p>
-
-<pre><code>CGRect rect4 = { .origin = CGPointZero, 12, 22 };
+<div class="highlight"><pre><code class="text">CGRect rect4 = { .origin = CGPointZero, 12, 22 };
 CGRect rect5 = { 0, 0, 12, 22 };
-</code></pre>
-
+</code></pre></div>
 <p>二、statement expressions</p>
 
 <p>昨晚在网上看了一篇<a href="http://nshipster.com/new-years-2014/">文章</a>.里面提供了一种新奇的写法</p>
-
-<pre><code> CGRect rect6 = ({
+<div class="highlight"><pre><code class="text"> CGRect rect6 = ({
     struct CGRect rect2;
     rect2.origin = CGPointZero;
     rect2.size.width = 22;
     rect2.size.height = 32;
     rect2;
 }); 
-</code></pre>
-
+</code></pre></div>
 <p>This is a gcc extension called <a href="http://gcc.gnu.org/onlinedocs/gcc/Statement-Exprs.html">statement expressions</a>,
 you can find the complete list of C extensions <a href="http://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html#C-Extensions">here</a> .这种特性在Linux内核中常被用于宏的定义中</p>
 </div>
@@ -182,7 +174,7 @@ you can find the complete list of C extensions <a href="http://gcc.gnu.org/onlin
 
 <p>1、category，可以通过它对原有的类扩展方法，但不能增加变量。</p>
 
-<p>2、associative，可以通过它来扩展属性。要用它必须使用&lt;objc/runtime.h>的头文件，然后就可以自由使用objc_getAssociatedObject、objc_setAssociatedObject、objc_removeAssociatedObjects。</p>
+<p>2、associative，可以通过它来扩展属性。要用它必须使用<objc/runtime.h>的头文件，然后就可以自由使用objc<em>getAssociatedObject、objc</em>setAssociatedObject、objc_removeAssociatedObjects。</p>
 </div>
   
   
@@ -219,8 +211,7 @@ you can find the complete list of C extensions <a href="http://gcc.gnu.org/onlin
 
 
   <div class="entry-content"><p>obc中是没有类变量的。只能在实现类里增加一个静态变量。然后，调用initialize方法，来初始化。这个静态变量只能能在实现类里用，所以别的类也要用的话，那就要在头文件里增加一个类方法，用于返回这个类变量。(如果是在头文件增加静态变量的话，那就全局变量了。)</p>
-
-<pre><code>@interface PubUtil : NSObject
+<div class="highlight"><pre><code class="text">@interface PubUtil : NSObject
 + (void)loginDelegate;
 @end
 
@@ -236,22 +227,17 @@ static LoginDelegate *loginDelegate;
     }
 }
 @end
-</code></pre>
-
+</code></pre></div>
 <p>这样就可以在别的类调用这个类变量了。</p>
-
-<pre><code>[PubUtil loginDelegate]
+<div class="highlight"><pre><code class="text">[PubUtil loginDelegate]
 //或是，但是用下面这种方式，xcode不会帮你提示有这个变量的。
 PubUtil.loginDelegate
-</code></pre>
-
+</code></pre></div>
 <p>但是如果PubUtil有子类的话。那initialize就会调用两次。除非PubUtil的子类有实现了initialize方法，并且不能这样调用父类的initialize。如下</p>
-
-<pre><code>+(void)initialize{
+<div class="highlight"><pre><code class="text">+(void)initialize{
     [super initialize];
 }
-</code></pre>
-
+</code></pre></div>
 <p>所以为了解决这个问题。就像开头的写法if (self == [PubUtil class])，先判断下是不是当前类的类型。</p>
 </div>
   
@@ -292,59 +278,48 @@ PubUtil.loginDelegate
 
 <ol>
 <li><p>在VC中override以下方法:</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [self.view endEditing:YES];
- }   
-</code></pre>
-
-<p> 如果获取view比较困难的时候，可以换成调用</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
- }
-</code></pre>
-
-<p> 或</p>
-
-<pre><code> -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
- {
-     [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
- }
-</code></pre></li>
+<div class="highlight"><pre><code class="text">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}   
+</code></pre></div>
+<p>如果获取view比较困难的时候，可以换成调用</p>
+<div class="highlight"><pre><code class="text">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]; 
+}
+</code></pre></div>
+<p>或</p>
+<div class="highlight"><pre><code class="text">-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES]
+}
+</code></pre></div></li>
 <li><p>UIScrollViewKeyboardDismissMode</p>
 
-<p> IOS7苹果给UIScrollView添加了一个很好用的属性keyboardDismissMode，用于在滚动的时候隐藏键盘。
+<p>IOS7苹果给UIScrollView添加了一个很好用的属性keyboardDismissMode，用于在滚动的时候隐藏键盘。
 现在仅仅只需要在Storyboard中改变一个简单的属性，或者增加一行代码，你的app可以和办到和Messages app一样的事情了。这个属性使用了新的UIScrollViewKeyboardDismissMode enum枚举类型。这个enum枚举类型可能的值如下：</p>
-
-<pre><code>   UIScrollViewKeyboardDismissModeNone        // the keyboard is not dismissed automatically when scrolling 
-   UIScrollViewKeyboardDismissModeOnDrag      // dismisses the keyboard when a drag begins 
-   UIScrollViewKeyboardDismissModeInteractive // the keyboard follows the dragging touch off screen, and may be pulled upward again to cancel the dismiss 
-</code></pre></li>
+<div class="highlight"><pre><code class="text">UIScrollViewKeyboardDismissModeNone        // the keyboard is not dismissed automatically when scrolling 
+UIScrollViewKeyboardDismissModeOnDrag      // dismisses the keyboard when a drag begins 
+UIScrollViewKeyboardDismissModeInteractive // the keyboard follows the dragging touch off screen, and may be pulled upward again to cancel the dismiss 
+</code></pre></div></li>
 </ol>
-
 
 <p>二、手动注册视图类</p>
 
 <p>UITableView有这个方法</p>
-
-<pre><code>- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
+<div class="highlight"><pre><code class="text">- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
 - (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(6_0);
-</code></pre>
-
+</code></pre></div>
 <p>三、iOS中的json转化</p>
-
-<pre><code> //Foundation对象转换为json数据
+<div class="highlight"><pre><code class="text"> //Foundation对象转换为json数据
  NSData *jsonData = [NSJSONSerializationdataWithJSONObject:dictoptions:NSJSONWritingPrettyPrinted error:NULL];
  NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
- NSLog(@"json data:%@",json);
+ NSLog(@&quot;json data:%@&quot;,json);
 
   //NSData转换为NSDictionary
 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:NULL];
-</code></pre>
-</div>
+</code></pre></div></div>
   
   
 
@@ -379,7 +354,7 @@ NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NS
   </header>
 
 
-  <div class="entry-content"><p>$(BUILT_PRODUCTS_DIR)
+  <div class="entry-content"><p>$(BUILT<em>PRODUCTS</em>DIR)
 build成功后的，最终产品路径－－可以在Build Settings参数的Per-configuration Build Products Path项里设置</p>
 
 <p>$(TARGET_NAME)
@@ -388,10 +363,9 @@ build成功后的，最终产品路径－－可以在Build Settings参数的Per-
 <p>$(SRCROOT)
 工程文件（比如Nuno.xcodeproj）的路径</p>
 
-<p>$(CURRENT_PROJECT_VERSION)</p>
-
-<pre><code>Variable                                  Example
-PATH                                      "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+<p>$(CURRENT<em>PROJECT</em>VERSION)</p>
+<div class="highlight"><pre><code class="text">Variable                                  Example
+PATH                                      &quot;/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin&quot;
 LANG                                      en_US.US-ASCII
 IPHONEOS_DEPLOYMENT_TARGET                4.1
 ACTION                                    build
@@ -406,35 +380,35 @@ APPLE_INTERNAL_DOCUMENTATION_DIR          /AppleInternal/Documentation
 APPLE_INTERNAL_LIBRARY_DIR                /AppleInternal/Library
 APPLE_INTERNAL_TOOLS                      /AppleInternal/Developer/Tools
 APPLY_RULES_IN_COPY_FILES                 NO
-ARCHS                                     "armv6 armv7"
-ARCHS_STANDARD_32_64_BIT                  "armv6 armv7"
-ARCHS_STANDARD_32_BIT                     "armv6 armv7"
+ARCHS                                     &quot;armv6 armv7&quot;
+ARCHS_STANDARD_32_64_BIT                  &quot;armv6 armv7&quot;
+ARCHS_STANDARD_32_BIT                     &quot;armv6 armv7&quot;
 ARCHS_UNIVERSAL_IPHONE_OS                 armv7
-AVAILABLE_PLATFORMS                       "iphonesimulator macosx iphoneos"
-BUILD_COMPONENTS                          "headers build"
-BUILD_DIR                                 "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath"
-BUILD_ROOT                                "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath"
+AVAILABLE_PLATFORMS                       &quot;iphonesimulator macosx iphoneos&quot;
+BUILD_COMPONENTS                          &quot;headers build&quot;
+BUILD_DIR                                 &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath&quot;
+BUILD_ROOT                                &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath&quot;
 BUILD_STYLE
 BUILD_VARIANTS                             normal
-BUILT_PRODUCTS_DIR                         "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos"
+BUILT_PRODUCTS_DIR                         &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos&quot;
 CACHE_ROOT                                 /var/folders/2x/rvb2r9s16mq6r318zxvn0lk80000gn/C/com.apple.Xcode.501
 CCHROOT                                    /var/folders/2x/rvb2r9s16mq6r318zxvn0lk80000gn/C/com.apple.Xcode.501
 CHMOD                                      /bin/chmod
 CHOWN                                      /usr/sbin/chown
-CLASS_FILE_DIR                             "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/JavaClasses"
+CLASS_FILE_DIR                             &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/JavaClasses&quot;
 CLEAN_PRECOMPS                             YES
 CLONE_HEADERS                              NO
-CODESIGNING_FOLDER_PATH                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/InstallationBuildProductsLocation/Applications/project.app"
+CODESIGNING_FOLDER_PATH                    &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/InstallationBuildProductsLocation/Applications/project.app&quot;
 CODE_SIGNING_ALLOWED                       YES
 CODE_SIGNING_REQUIRED                      YES
 CODE_SIGN_CONTEXT_CLASS                    XCiPhoneOSCodeSignContext
-CODE_SIGN_IDENTITY                         "iPhone Distribution"
+CODE_SIGN_IDENTITY                         &quot;iPhone Distribution&quot;
 COMBINE_HIDPI_IMAGES                       NO
 COMPOSITE_SDK_DIRS                         /var/folders/2x/rvb2r9s16mq6r318zxvn0lk80000gn/C/com.apple.Xcode.501/CompositeSDKs
 COMPRESS_PNG_FILES                         YES
 CONFIGURATION                              Distribution
-CONFIGURATION_BUILD_DIR                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos"
-CONFIGURATION_TEMP_DIR                     "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos"
+CONFIGURATION_BUILD_DIR                    &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos&quot;
+CONFIGURATION_TEMP_DIR                     &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos&quot;
 CONTENTS_FOLDER_PATH                       project.app/Contents
 COPYING_PRESERVES_HFS_DATA                 NO
 COPY_PHASE_STRIP                           YES
@@ -447,14 +421,14 @@ DEBUGGING_SYMBOLS                          YES
 DEBUG_INFORMATION_FORMAT                   dwarf-with-dsym
 DEPLOYMENT_LOCATION                        YES
 DEPLOYMENT_POSTPROCESSING                  YES
-DERIVED_FILES_DIR                          "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources"
-DERIVED_FILE_DIR                           "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources"
-DERIVED_SOURCES_DIR                        "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources"
+DERIVED_FILES_DIR                          &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources&quot;
+DERIVED_FILE_DIR                           &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources&quot;
+DERIVED_SOURCES_DIR                        &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/DerivedSources&quot;
 DEVELOPER_APPLICATIONS_DIR                 /Developer/Applications
 DEVELOPER_BIN_DIR                          /Developer/usr/bin
 DEVELOPER_DIR                              /Developer
 DEVELOPER_FRAMEWORKS_DIR                   /Developer/Library/Frameworks
-DEVELOPER_FRAMEWORKS_DIR_QUOTED            "\"/Developer/Library/Frameworks\""
+DEVELOPER_FRAMEWORKS_DIR_QUOTED            &quot;\&quot;/Developer/Library/Frameworks\&quot;&quot;
 DEVELOPER_LIBRARY_DIR                      /Developer/Library
 DEVELOPER_SDK_DIR                          /Developer/SDKs
 DEVELOPER_TOOLS_DIR                        /Developer/Tools
@@ -462,34 +436,33 @@ DEVELOPER_USR_DIR                          /Developer/usr
 DEVELOPMENT_LANGUAGE                       English
 DOCUMENTATION_FOLDER_PATH                  project.app/English.lproj/Documentation
 DO_HEADER_SCANNING_IN_JAM                  NO
-DSTROOT                                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/InstallationBuildProductsLocation"
+DSTROOT                                    &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/InstallationBuildProductsLocation&quot;
 DWARF_DSYM_FILE_NAME                       project.app.dSYM
 DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT   NO
-DWARF_DSYM_FOLDER_PATH                    "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos"
+DWARF_DSYM_FOLDER_PATH                    &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos&quot;
 EFFECTIVE_PLATFORM_NAME                    -iphoneos
 EMBEDDED_PROFILE_NAME                      embedded.mobileprovision
 ENABLE_HEADER_DEPENDENCIES                 YES
 ENABLE_OPENMP_SUPPORT                      NO
 ENTITLEMENTS_ALLOWED                       YES
 ENTITLEMENTS_REQUIRED                      YES
-EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS  ".svn CVS"
+EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS  &quot;.svn CVS&quot;
 EXECUTABLES_FOLDER_PATH                    project.app/Executables
 EXECUTABLE_FOLDER_PATH                     project.app
 EXECUTABLE_NAME                            project
 EXECUTABLE_PATH                            project.app/project
-FILE_LIST                                  "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/Objects/LinkFileList"
-FIXED_FILES_DIR                            "/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/FixedFiles"
+FILE_LIST                                  &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/Objects/LinkFileList&quot;
+FIXED_FILES_DIR                            &quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/IntermediateBuildFilesPath/project.build/Distribution-iphoneos/Project.build/FixedFiles&quot;
 FRAMEWORKS_FOLDER_PATH                     project.app/Frameworks
 FRAMEWORK_FLAG_PREFIX                      -framework
-FRAMEWORK_SEARCH_PATHS                     "\"/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos\" "
+FRAMEWORK_SEARCH_PATHS                     &quot;\&quot;/Users/username/Library/Developer/Xcode/DerivedData/project-dxdgjvgsvvbhowgjqouevhmvgxgf/ArchiveIntermediates/Project Distribution/BuildProductsPath/Distribution-iphoneos\&quot; &quot;
 FRAMEWORK_VERSION                          A
 FULL_PRODUCT_NAME                          project.app
 GCC3_VERSION                               3.3
 GCC_C_LANGUAGE_STANDARD                    gnu99
 GCC_INLINES_ARE_PRIVATE_EXTERN             YES
 GCC_PFE_FILE_C_DIAL
-</code></pre>
-</div>
+</code></pre></div></div>
   
   
 
