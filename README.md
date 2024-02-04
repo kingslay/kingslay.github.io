@@ -3,9 +3,9 @@
 
 ## 产品
 
-APPStore: https://apps.apple.com/app/tracyplayer/id6450770064
+[APPStore](https://apps.apple.com/app/tracyplayer/id6450770064)
 
-Testflight: https://testflight.apple.com/join/eNmYbmZN
+[Testflight](https://testflight.apple.com/join/eNmYbmZN)
 
 ## 联系方式
 Email : kingslay@icloud.com
