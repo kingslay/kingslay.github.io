@@ -16,3 +16,4 @@ Email <kingslay@icloud.com>
 
 Github <https://github.com/kingslay>
 
+[Privacy Policy](https://htmlpreview.github.io/?https://github.com/kingslay/KSPlayer/blob/main/Documents/privacy.html)
