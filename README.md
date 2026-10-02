@@ -2,7 +2,7 @@
 他将这些技术运用于创建应用程序和通用框架等解决方案，其中很多都被用户喜爱，并被开发者社区广泛使用来构建其他软件。
 
 ## 产品
-1. TracyPlayer 
+1. Tracy
 
     [APPStore](https://apps.apple.com/app/tracyplayer/id6450770064)
     [TestFlight](https://testflight.apple.com/join/eNmYbmZN)
