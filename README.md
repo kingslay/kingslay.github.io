@@ -1,49 +1,76 @@
 # Tracy
 
-Tracy is a media player for Apple platforms, including iPhone, iPad, Apple TV, and Mac.
+**Tracy is a media player for Apple platforms, including iPhone, iPad, Apple TV, and Mac.**
 
-Tracy allows users to manage and play their personal media from local storage, network sources, and supported cloud storage services.
+Tracy allows users to browse, manage, and play their personal video and audio files from local storage, network sources, and supported cloud storage services.
 
-## Features
+## About Tracy
 
-- Play video and audio files on Apple platforms
-- Browse and manage personal media files
-- Support local and network media sources
+Tracy is designed for users who want to manage and play their personal media on Apple devices.
+
+Tracy provides:
+
+- Video and audio playback
+- Local media playback
+- Network media playback
+- Personal media library management
+- Subtitle and audio track support
+- Playback controls and media information
 - Google Drive integration
-- Media library and playback management
-- Subtitle, audio track, and other media playback features
+
+Tracy does not require a Tracy account for basic media playback.
 
 ## Google Drive Integration
 
-Tracy can connect to a user's Google Drive account to allow the user to browse and play their own media files stored in Google Drive.
+Tracy provides an optional integration with Google Drive.
 
-When Google Drive integration is enabled, Tracy uses Google APIs to access the Google Drive data necessary to provide the requested functionality.
+When you choose to connect your Google account, Tracy allows you to browse your own Google Drive files and select media files for playback.
 
-Tracy does not access Google Drive data unless the user chooses to connect their Google account and use the Google Drive integration.
+Tracy uses Google APIs only to provide the Google Drive functionality requested by you.
 
-Google Drive data is used only to provide the functionality requested by the user, such as browsing and accessing media files stored in their Google Drive.
+Google Drive data may be used to:
+
+- Authenticate your Google account
+- Browse files and folders in your Google Drive
+- Display file information required by Tracy
+- Allow you to select media files stored in Google Drive
+- Access media files that you choose to play
+- Maintain the connection required for Google Drive functionality
+
+Tracy accesses Google Drive data only after you explicitly authorize the application through Google's authentication system.
+
+### Google User Data
 
 Tracy does not:
 
 - Sell Google user data
+- Rent or trade Google user data
 - Use Google user data for advertising
+- Use Google user data for behavioral profiling
 - Use Google user data for unrelated purposes
 - Transfer Google user data to third parties for their own purposes
-- Use Google APIs to generate, create, or distribute non-consensual intimate imagery (AI NCII)
 
-Google user data is handled in accordance with Google's API Services User Data Policy and applicable Google API requirements.
+Tracy uses Google user data only to provide the functionality requested by the user.
 
-## Data and Privacy
+Tracy does not use Google APIs to generate, create, distribute, or facilitate non-consensual intimate imagery, including AI-generated non-consensual intimate imagery.
 
-Tracy is designed to access only the information necessary to provide the features requested by the user.
+Tracy's handling of Google user data follows the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the applicable Limited Use requirements.
 
-For information about how Tracy collects, uses, stores, and protects personal information and Google user data, please see our [Privacy Policy](https://www.kintan.wang/privacy.html).
+## Privacy
+
+For detailed information about how Tracy collects, uses, stores, and protects personal information and Google user data, please see our:
+
+[Privacy Policy](https://www.kintan.wang/privacy.html)
 
 ## KSPlayer
 
-Tracy is built with technologies including [KSPlayer](https://github.com/kingslay/KSPlayer), an open-source media player framework for Apple platforms.
+Tracy uses technologies including [KSPlayer](https://github.com/kingslay/KSPlayer), an open-source media player framework for Apple platforms.
 
-## Contact
+KSPlayer is developed as an open-source media player framework and is independent from Google's services.
+
+## Developer
+
+Tracy is developed by **kintan**.
 
 For questions about Tracy, privacy, or data handling, please contact:
 
@@ -51,4 +78,4 @@ For questions about Tracy, privacy, or data handling, please contact:
 
 ## Privacy Policy
 
-[Read the Privacy Policy](https://www.kintan.wang/privacy.html)
+[Read the Tracy Privacy Policy](https://www.kintan.wang/privacy.html)
